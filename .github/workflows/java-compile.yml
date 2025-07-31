@@ -2,7 +2,7 @@ name: Compile Java
 
 on:
   push:
-    branches: [main]  # main 브랜치에 push될 때만 실행
+    branches: [main]
 
 jobs:
   build:
@@ -21,5 +21,8 @@ jobs:
       - name: Compile Java
         run: javac Main.java
 
-      - name: Check class file
-        run: ls -l Main.class
+      - name: Upload compiled class file
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-class
+          path: Main.class
